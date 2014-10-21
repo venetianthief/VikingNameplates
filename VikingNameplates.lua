@@ -535,7 +535,12 @@ function VikingNameplates:OnFrame()
   self.unitPlayer = GameLib.GetPlayerUnit()
 
   for idx, tNameplate in pairs(self.arUnit2Nameplate) do
-    self:DrawNameplate(tNameplate)
+    if Apollo.GetAddon("PrespectivePlates") == nil then
+      self:DrawNameplate(tNameplate)
+    else
+      Apollo.GetAddon("PrespectivePlates"):OnRequestResize(tNameplate)
+      Print ("Vikinghug: Using PrespectivePlates!")
+    end
   end
 
 end
